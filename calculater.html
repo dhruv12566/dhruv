@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator by Dhruv</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" placeholder="0" id="inputBox" readonly />
+    <div>
+      <button>AC</button>
+      <button>DEL</button>
+      <button>%</button>
+      <button class="Dhruv">/</button>
+    </div>
+    <div>
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button class="what">*</button>
+    </div>
+    <div>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button class="hi">-</button>
+    </div>
+    <div>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button class="how">+</button>
+    </div>
+    <div>
+      <button>00</button>
+      <button>0</button>
+      <button>.</button>
+      <button class="equalBtn">=</button>
+    </div>
+  </div>
+
+  <script>
+    let input = document.getElementById('inputBox');
+    let buttons = document.querySelectorAll('button');
+
+    let string = "";
+    let arr = Array.from(buttons);
+
+    arr.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const value = e.target.innerHTML;
+
+        if (value === '=') {
+          try {
+            string = eval(string);
+            input.value = string;
+          } catch {
+            input.value = "Error";
+            string = "";
+          }
+        } else if (value === 'AC') {
+          string = "";
+          input.value = string;
+        } else if (value === 'DEL') {
+          string = string.substring(0, string.length - 1);
+          input.value = string;
+        } else {
+          string += value;
+          input.value = string;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
